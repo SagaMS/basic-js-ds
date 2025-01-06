@@ -49,7 +49,7 @@ class BinarySearchTree {
   }
 
   has(data) {
-    return Boolean(this.find(data));
+    return !!this.find(data);
   }
 
   find(data) {
@@ -74,7 +74,7 @@ class BinarySearchTree {
 
   min() {
     if (!this.rootOfTree) {
-      return;
+      return null;
     }
 
     let node = this.rootOfTree;
@@ -88,7 +88,7 @@ class BinarySearchTree {
 
   max() {
     if (!this.rootOfTree) {
-      return;
+      return null;
     }
 
     let node = this.rootOfTree;

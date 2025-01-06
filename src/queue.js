@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Implement the Queue with a given interface via linked list (use ListNode extension above).
@@ -15,19 +15,48 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 class Queue {
 
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this.head = null;
+    this.tail = null;
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  getUnderlyingList() {
+    return this.head;
+  }
+
+  enqueue(value) {
+    let newElement = new ListNode(value);
+    if(!this.head){
+        this.head = newElement; 
+    }else{
+        if(this.head && !this.tail){
+            this.head.next = newElement ;
+            this.tail = this.head.next;
+            //это ховст он не на что не ссылается. как бы за ним никого нет
+        }else{
+            this.tail.next = newElement;
+            this.tail = this.tail.next;
+
+        }
+    }
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if(this.head ===null && this.tail ===null){
+      return null
+      //значит это пустая очередь
+  }else if(this.tail ===null){
+      let value = this.head.value;
+      this.head = null
+      return value;
+  }else{
+      const tempValue = this.head.value;
+      this.head = this.head.next
+      if(this.head === this.tail){
+          //осталас один эелемент
+          this.tail = null;
+      }
+  }
   }
 }
 
