@@ -8,12 +8,12 @@ const { Node } = require('../extensions/list-tree.js');
 */
 class BinarySearchTree {
 
+  constructor() {
+    this.rootOfTree = null; 
+  }
+
   root() {
-    if(this.rootOfTree){
-      return this.rootOfTree;
-    }else{
-      return null;
-    }
+    return this.rootOfTree;
   }
 
   add(data) {
@@ -21,16 +21,17 @@ class BinarySearchTree {
       this.rootOfTree = new Node(data);
       return; 
     }else{
+      let newNode = new Node(data)
       let r = this.root()
       while(r){
-        if(r.data < data){
+        if(r.data > data){
           if(!r.left){
-             r.left = new Node(data);
+             r.left = newNode;
              return
           }
           r = r.left
         }
-        if(r.data > data){
+        if(r.data < data){
           if(!r.right){
             r.right = new Node(data);
             return 
@@ -52,15 +53,15 @@ class BinarySearchTree {
   }
 
   find(data) {
-    let r = this.root();
-    while(r) {
-      if (r.data === data) {
-        return r;
-      }
-      if (r.left !== null && data < r.data) {
-        r = r.left;
-      } else {
-        r = r.right;
+    let mainR = this.root();
+    while (mainR) {
+      if (data === mainR.data){
+         return mainR;
+        }
+      if(data < mainR.data){
+        mainR = mainR.left;
+      }else{
+        mainR = mainR.right;
       }
     }
     return null;
@@ -72,30 +73,31 @@ class BinarySearchTree {
   }
 
   min() {
-    let first = this.root()
-    if(!first){
-      return null;
+    if (!this.rootOfTree) {
+      return;
     }
-    
-    while(first.left){
-      first = first.left;
+
+    let node = this.rootOfTree;
+    while (node.left) {
+      node = node.left;
     }
-    return first.data;
+    return node.data;
   }
 
 
 
   max() {
-    let first = this.root()
-    if(!first){
-      return null;
+    if (!this.rootOfTree) {
+      return;
     }
-    
-    while(first.right){
-      first = first.right
+
+    let node = this.rootOfTree;
+    while (node.right) {
+      node = node.right;
     }
-    return first.data;
+    return node.data;
   }
+
 
   
 }
