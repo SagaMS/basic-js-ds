@@ -34,6 +34,9 @@ let head = l;
 while(head.next !== null){
     if(head.next.value ===k){
         head.next = head.next.next
+        if( head.next === null){
+          break;
+        }
     }
     head = head.next;
 }
