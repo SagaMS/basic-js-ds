@@ -48,7 +48,7 @@ class BinarySearchTree {
   }
 
   has(data) {
-    return this.find(data);
+    return Boolean(this.find(data));
   }
 
   find(data) {
@@ -57,7 +57,7 @@ class BinarySearchTree {
       if (r.data === data) {
         return r;
       }
-      if (r.left !==null && data < r.data) {
+      if (r.left !== null && data < r.data) {
         r = r.left;
       } else {
         r = r.right;
@@ -72,14 +72,32 @@ class BinarySearchTree {
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let first = this.root()
+    if(!first){
+      return null;
+    }
+    
+    while(first.left){
+      first = first.left;
+    }
+    return first.data;
   }
 
+
+
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let first = this.root()
+    if(!first){
+      return null;
+    }
+    
+    while(first.right){
+      first = first.right
+    }
+    return first.data;
   }
+
+  
 }
 
 module.exports = {
