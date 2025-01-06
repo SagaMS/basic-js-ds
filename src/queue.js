@@ -53,9 +53,10 @@ class Queue {
       const tempValue = this.head.value;
       this.head = this.head.next
       if(this.head === this.tail){
-          //осталас один эелемент
+          //осталася один эелемент
           this.tail = null;
       }
+      return tempValue;
   }
   }
 }
